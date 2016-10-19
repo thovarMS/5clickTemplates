@@ -213,7 +213,7 @@
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "[parameters('vmSku')]"
+          "vmSize": "Basic_A4"
         },
         "osProfile": {
           "computerName": "[variables('jumpBoxName')]",
