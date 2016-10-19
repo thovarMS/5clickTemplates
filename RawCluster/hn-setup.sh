@@ -7,8 +7,6 @@ localip=`hostname -i | cut --delimiter='.' -f -3`
 
 echo User is: $USER
 echo Pass is: $PASS
-echo License IP is: $LICIP
-echo Model is: $DOWN
 
 echo "*               hard    memlock         unlimited" >> /etc/security/limits.conf
 echo "*               soft    memlock         unlimited" >> /etc/security/limits.conf
