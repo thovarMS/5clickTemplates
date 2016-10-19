@@ -1,16 +1,34 @@
 #!/bin/bash
 USER=$1
 PASS=$2
-IP=`hostname -i`
-echo User is: $1
-echo Pass is: $2
-wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
-rpm -ivh epel-release-7-8.noarch.rpm
 
-yum install -y -q nfs-utils sshpass nmap
-yum groupinstall -y "X Window System"
+IP=`hostname -i`
+localip=`hostname -i | cut --delimiter='.' -f -3`
+
+echo User is: $USER
+echo Pass is: $PASS
+echo License IP is: $LICIP
+echo Model is: $DOWN
+
+echo "*               hard    memlock         unlimited" >> /etc/security/limits.conf
+echo "*               soft    memlock         unlimited" >> /etc/security/limits.conf
+
+mkdir -p /home/$USER/.ssh
+mkdir -p /home/$USER/bin
+mkdir -p /mnt/resource/scratch
 mkdir -p /mnt/nfsshare
 
+ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
+ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
+
+wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+
+rpm -ivh epel-release-7-8.noarch.rpm
+yum install -y -q nfs-utils sshpass nmap htop
+yum groupinstall -y "X Window System"
+
+echo "/mnt/nfsshare $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
+echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 chmod -R 777 /mnt/nfsshare/
 systemctl enable rpcbind
 systemctl enable nfs-server
@@ -22,28 +40,16 @@ systemctl start nfs-lock
 systemctl start nfs-idmap
 systemctl restart nfs-server
 
-ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
-ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
+mv clusRun.sh cn-setup.sh /home/$USER/bin
+chmod +x /home/$USER/bin/*.sh
+chown $USER:$USER /home/$USER/bin
 
-mkdir -p /home/$USER/bin
-wget --quiet https://raw.githubusercontent.com/thovarMS/5clickTemplates/master/RawCluster/clusRun.sh -O /home/$USER/bin/clusRun.sh
-wget --quiet https://raw.githubusercontent.com/thovarMS/5clickTemplates/master/RawCluster/cn-setup.sh -O /home/$USER/bin/cn-setup.sh
-chmod +x /home/$USER/bin/clusRun.sh
-chmod +x /home/$USER/bin/cn-setup.sh
-chown $USER:$USER /home/$USER/bin/*
-
-localip=`hostname -i | cut --delimiter='.' -f -3`
-echo "/mnt/nfsshare $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
-
-mv passwordlessAuth.sh /home/$USER/bin/
 nmap -sn $localip.* | grep $localip. | awk '{print $5}' > /home/$USER/bin/nodeips.txt
 myhost=`hostname -i`
-sed -i '/'$myhost'/d' /home/$USER/bin/nodeips.txt
-sed -i '/10.0.0.1/d' /home/$USER/bin/nodeips.txt
+sed -i '/\<'$myhost'\>/d' /home/$USER/bin/nodeips.txt
+sed -i '/\<10.0.0.1\>/d' /home/$USER/bin/nodeips.txt
 
-mkdir -p /home/$USER/.ssh
 echo -e  'y\n' | ssh-keygen -f /home/$USER/.ssh/id_rsa -t rsa -N ''
-
 echo 'Host *' >> /home/$USER/.ssh/config
 echo 'StrictHostKeyChecking no' >> /home/$USER/.ssh/config
 chmod 400 /home/$USER/.ssh/config
@@ -60,7 +66,7 @@ NAMES=`cat /home/$USER/bin/nodenames.txt` #names from names.txt file
 for NAME in $NAMES; do
         sshpass -p $PASS scp -o "StrictHostKeyChecking no" -o ConnectTimeout=2 /home/$USER/bin/cn-setup.sh $USER@$NAME:/home/$USER/
         sshpass -p $PASS scp -o "StrictHostKeyChecking no" -o ConnectTimeout=2 /home/$USER/bin/nodenames.txt $USER@$NAME:/home/$USER/
-        sshpass -p $PASS ssh -t -t -o ConnectTimeout=2 $USER@$NAME 'echo "Azure@123" | sudo -S sh /home/'$USER'/cn-setup.sh '$IP
+        sshpass -p $PASS ssh -t -t -o ConnectTimeout=2 $USER@$NAME 'echo "'$PASS'" | sudo -S sh /home/'$USER'/cn-setup.sh '$IP
         sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME 'mkdir /home/'$USER'/.ssh && chmod 700 .ssh'
         sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME "echo -e  'y\n' | ssh-keygen -f .ssh/id_rsa -t rsa -N ''"
         sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME 'touch /home/'$USER'/.ssh/config'
@@ -79,10 +85,12 @@ for NAME in $NAMES; do
 done
 
 cp ~/.ssh/authorized_keys /home/$USER/.ssh/authorized_keys
-chown azureuser:azureuser /home/$USER/.ssh/*
-rm /home/$USER/bin/install-cn.sh
-
-chmod +x install-fluent.sh
-source install-fluent.sh $USER
-
-
+#mv /mnt/resource/*.cas.gz /mnt/resource/benchmark.cas.gz
+#mv /mnt/resource/*.dat.gz /mnt/resource/benchmark.dat.gz
+#mv runme.jou /mnt/resource/runme.jou
+cp /home/$USER/bin/nodenames.txt /mnt/scratch/hosts
+chown -R $USER:$USER /home/$USER/.ssh/
+chown -R $USER:$USER /home/$USER/bin/
+chown -R $USER:$USER /mnt/resource/scratch/
+chmod -R 744 /mnt/resource/scratch/
+rm /home/$USER/bin/cn-setup.sh
