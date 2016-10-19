@@ -97,7 +97,7 @@
     "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
     "nicName": "[concat(variables('namingInfix'), 'nic')]",
     "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
-    "scriptUrl": "https://raw.githubusercontent.com/tanewill/5clickTemplates/master/RawCluster/",
+    "scriptUrl": "https://raw.githubusercontent.com/thovarMS/5clickTemplates/master/RawCluster/",
     "cnSetupScript": "cn-setup.sh",
     "hnSetupScript": "hn-setup.sh",
     "osType": {
