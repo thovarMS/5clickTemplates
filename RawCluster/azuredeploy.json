@@ -27,7 +27,7 @@
     },
     "vmSku": {
       "type": "string",
-      "defaultValue": "Basic_A4",
+      "defaultValue": "Basic_A3",
       "allowedValues": [
         "Basic_A4",
         "Standard_A8",
