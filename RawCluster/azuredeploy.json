@@ -27,7 +27,7 @@
     },
     "vmSku": {
       "type": "string",
-      "defaultValue": "Basic_A3",
+      "defaultValue": "Standard_A8",
       "allowedValues": [
         "Basic_A4",
         "Standard_A8",
@@ -212,7 +212,7 @@
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Basic_A4"
+          "vmSize": "Basic_A3"
         },
         "osProfile": {
           "computerName": "[variables('jumpBoxName')]",
