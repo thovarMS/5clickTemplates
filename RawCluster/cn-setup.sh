@@ -6,8 +6,10 @@ IPPRE=$1
 USER=`whoami`
 yum install -y -q nfs-utils
 mkdir -p /mnt/nfsshare
-mkdir -p /mnt/resource/scratch
+# the NFS shared will be mounted on a persitant directory
+mkdir -p /mnt/scratch
 chmod 777 /mnt/nfsshare
+chmod 777 /mnt/scratch
 systemctl enable rpcbind
 systemctl enable nfs-server
 systemctl enable nfs-lock
@@ -18,7 +20,7 @@ systemctl start nfs-lock
 systemctl start nfs-idmap
 localip=`hostname -i | cut --delimiter='.' -f -3`
 echo "$IPPRE:/mnt/nfsshare    /mnt/nfsshare   nfs defaults 0 0" | tee -a /etc/fstab
-echo "$IPPRE:/mnt/resource/scratch    /mnt/resource/scratch   nfs defaults 0 0" | tee -a /etc/fstab
+echo "$IPPRE:/mnt/resource/scratch    /mnt/scratch   nfs defaults 0 0" | tee -a /etc/fstab
 showmount -e 10.0.0.4
 mount -a
 
