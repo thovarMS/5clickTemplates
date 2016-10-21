@@ -13,6 +13,8 @@ echo "*               soft    memlock         unlimited" >> /etc/security/limits
 
 mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
+
+# BEWARE: /mnt/resource/ is /dev/sdb1 which is a temporary disk on the VM (data are not keeped between reboot) 
 mkdir -p /mnt/resource/scratch
 mkdir -p /mnt/nfsshare
 
