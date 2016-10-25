@@ -34,3 +34,14 @@ ssh {username}@{vm-private-ip-address}
 vmssName must be 3-61 characters in length. It should also be globally unique across all of Azure. If it isn't globally unique, it is possible that this template will still deploy properly, but we don't recommend relying on this pseudo-probabilistic behavior.
 instanceCount must be 100 or less.
 
+Then log on of the Compute node using the same account and load the MPI environement variables with:
+  source /opt/intel/impi/5.1.3.181/bin64/mpivars.sh 
+  
+You are now ready to launch your first test:
+    mpirun -ppn 1 -n 2 -hostfile /home/$USER/bin/nodenames.txt -env I_MPI_FABRICS=shm:dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 hostname
+    
+     mpirun -hosts -hostfile /home/$USER/bin/nodenames.txt -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 IMB-MPI1 pingpong
+     
+<b>NOTES</b>
+
+The NFS share fro the jump box is created on a fast/temporary drive, so it will be lost in case of a STOP/RE START of the VM
