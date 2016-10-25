@@ -12,12 +12,15 @@ This template allows you to deploy a simple VM Scale Set of Linux VMs using the 
 <b>Architecture</b>
 
 View of ARM template:
+
 <img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Azure%20ARM.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
 
-Delpoyed in Azure
+Delpoyed in Azure: 
+
 <img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
 
 <b>Use</b>
+
 ssh {username}@{jumpbox-public-ip-address}
 
 To ssh into one of the VMs in the scale set, go to resources.azure.com to find the private IP address of the VM, make sure you are ssh'ed into the jumpbox, then execute the following command:
