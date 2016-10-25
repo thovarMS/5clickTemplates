@@ -39,10 +39,11 @@ Then log on of the Compute node using the same account and load the MPI environe
   
 You are now ready to launch your first test:
 
-<h1>Run a simple MPI command</h1>
+<i>Run a simple MPI command</i>
 <pre class="prettyprint copy-to-clipboard " >mpirun -ppn 1 -n 2 -hostfile /home/$USER/bin/nodenames.txt -env I_MPI_FABRICS=shm:dapl -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 hostname</pre>
 
-mpirun -ppn 1 -n 2 -hostfile /home/$USER/bin/nodenames.txt -env I_MPI_FABRICS=dapl     -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 IMB-MPI1 pingpong
+<i>Run an MPI benchmark</i>
+<pre class="prettyprint copy-to-clipboard " >mpirun -ppn 1 -n 2 -hostfile /home/$USER/bin/nodenames.txt -env I_MPI_FABRICS=dapl     -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 IMB-MPI1 pingpong</pre>
 
      
 <b>NOTES</b>
