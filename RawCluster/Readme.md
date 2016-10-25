@@ -15,7 +15,7 @@ View of ARM template:
 <img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Azure%20ARM.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
 
 Delpoyed in Azure
-<img src="https://github.com/thovarMS/5clickTemplates/RawCluster/Architecture.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
+<img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
 
 <b>Use</b>
 ssh {username}@{jumpbox-public-ip-address}
