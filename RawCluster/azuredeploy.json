@@ -28,12 +28,12 @@
     "linuxsku":{
       "type": "string",
       "defaultValue": "7.1",
-      "allowedValues": [        
+      "allowedValues": [  
 	      "7.1",
 	      "6.5"
       ],
        "metadata": {
-	 "description": "Chose the release of CentOS used."      }
+	 "description": "Chose the release of CentOS used."}
     },
     "vmSku": {
       "type": "string",
