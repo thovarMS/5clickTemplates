@@ -25,6 +25,16 @@
         "description": "Azure region where all resources will be deployed. This is distinct from resource group location."
       }
     },
+    "linuxsku":{
+      "type": "string",
+      "defaultValue": "7.1",
+      "allowedValues": [        
+	      "7.1",
+	      "6.5"
+      ],
+       "metadata": {
+	 "description": "Chose the release of CentOS used."      }
+    },
     "vmSku": {
       "type": "string",
       "defaultValue": "Standard_A8",
