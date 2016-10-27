@@ -20,6 +20,9 @@
     "adminUsername": {
       "value": "ubuntu"
     },
+    "linuxsku": {
+       "value": "7.1",     
+    },
     "adminPassword": {
       "value": "GEN-PASSWORD"
     }
