@@ -28,7 +28,7 @@
     "linuxsku":{
       "type": "string",
       "defaultValue": "7.1",
-      "allowedValues": [  
+      "allowedValues": [
 	      "7.1",
 	      "6.5"
       ],
