@@ -1,6 +1,7 @@
 #!/bin/bash
 USER=$1
 PASS=$2
+SKUNAME=$3
 
 IP=`hostname -i`
 localip=`hostname -i | cut --delimiter='.' -f -3`
@@ -21,25 +22,38 @@ mkdir -p /mnt/nfsshare
 ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
 ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
 
-wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+if [ "$SKUNAME" == "6.5" ] ; then
+# For CentOS 6.5 
+   wget http://dl.fedoraproject.org/pub/epel/6/x86_64/sshpass-1.05-1.el6.x86_64.rpm
+   rpm -ivh sshpass-1.05-1.el6.x86_64.rpm
+else
+   wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+   rpm -ivh epel-release-7-8.noarch.rpm
+fi
 
-rpm -ivh epel-release-7-8.noarch.rpm
 yum install -y -q nfs-utils sshpass nmap htop
 yum groupinstall -y "X Window System"
 
 echo "/mnt/nfsshare $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 chmod -R 777 /mnt/nfsshare/
-systemctl enable rpcbind
-systemctl enable nfs-server
-systemctl enable nfs-lock
-systemctl enable nfs-idmap
-systemctl start rpcbind
-systemctl start nfs-server
-systemctl start nfs-lock
-systemctl start nfs-idmap
-systemctl restart nfs-server
-
+if [ "$SKUNAME" == "6.5" ] ; then
+# For CentOS 6.5 (systemctl is supported for version > 7)
+   chkconfig nfs on 
+   chkconfig rpcbind on 
+   service rpcbind start
+   service nfs start
+else
+   systemctl enable rpcbind
+   systemctl enable nfs-server
+   systemctl enable nfs-lock
+   systemctl enable nfs-idmap
+   systemctl start rpcbind
+   systemctl start nfs-server
+   systemctl start nfs-lock
+   systemctl start nfs-idmap
+   systemctl restart nfs-server
+fi
 mv clusRun.sh cn-setup.sh /home/$USER/bin
 chmod +x /home/$USER/bin/*.sh
 chown $USER:$USER /home/$USER/bin
