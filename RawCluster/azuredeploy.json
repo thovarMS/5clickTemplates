@@ -352,7 +352,7 @@
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": "[variables('vmScripts').scriptsToDownload]",
-                    "commandToExecute": "[concat('sh ', variables('cnSetupScript'))]"
+                    "commandToExecute": "[concat('sh ', variables('cnSetupScript'),' ', variables('jumpBoxName'))]"
                   }
                 }
               }
