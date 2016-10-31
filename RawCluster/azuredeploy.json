@@ -274,7 +274,7 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword')) ]",
+              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',parameters('linuxsku')) ]",
               "timestamp": 4
             }
           }
@@ -352,7 +352,7 @@
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": "[variables('vmScripts').scriptsToDownload]",
-                    "commandToExecute": "[concat('sh ', variables('cnSetupScript'),' ', variables('jumpBoxName'))]"
+                    "commandToExecute": "[concat('sh ', variables('cnSetupScript'),' ', variables('jumpBoxName'),' ',parameters('linuxsku'))]"
                   }
                 }
               }
