@@ -18,6 +18,8 @@ mkdir -p /home/$USER/bin
 # BEWARE: /mnt/resource/ is /dev/sdb1 which is a temporary disk on the VM (data are not keeped between reboot) 
 mkdir -p /mnt/resource/scratch
 mkdir -p /mnt/nfsshare
+chmod -R 777 /mnt/nfsshare/
+chmod -R 777 /mnt/resource/scratch/
 
 ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
 ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
@@ -37,6 +39,7 @@ yum groupinstall -y "X Window System"
 echo "/mnt/nfsshare $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 chmod -R 777 /mnt/nfsshare/
+chmod -R 777 /mnt/resource/scratch/
 if [ "$SKUNAME" == "6.5" ] ; then
 # For CentOS 6.5 (systemctl is supported for version > 7)
    chkconfig nfs on 
@@ -99,9 +102,6 @@ for NAME in $NAMES; do
 done
 
 cp ~/.ssh/authorized_keys /home/$USER/.ssh/authorized_keys
-#mv /mnt/resource/*.cas.gz /mnt/resource/benchmark.cas.gz
-#mv /mnt/resource/*.dat.gz /mnt/resource/benchmark.dat.gz
-#mv runme.jou /mnt/resource/runme.jou
 cp /home/$USER/bin/nodenames.txt /mnt/scratch/hosts
 chown -R $USER:$USER /home/$USER/.ssh/
 chown -R $USER:$USER /home/$USER/bin/
