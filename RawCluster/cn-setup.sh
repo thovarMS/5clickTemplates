@@ -3,21 +3,31 @@ echo ##################################################
 echo ############# Compute Node Setup #################
 echo ##################################################
 IPPRE=$1
+SKUNAME=$2
 USER=`whoami`
 yum install -y -q nfs-utils
 mkdir -p /mnt/nfsshare
-# the NFS shared will be mounted on a persitant directory
+# the NFS shared will be mounted on a persitant directory on the VM
 mkdir -p /mnt/scratch
 chmod 777 /mnt/nfsshare
 chmod 777 /mnt/scratch
-systemctl enable rpcbind
-systemctl enable nfs-server
-systemctl enable nfs-lock
-systemctl enable nfs-idmap
-systemctl start rpcbind
-systemctl start nfs-server
-systemctl start nfs-lock
-systemctl start nfs-idmap
+if [ "$SKUNAME" == "6.5" ] ; then
+# For CentOS 6.5 (systemctl is supported for version > 7)
+   chkconfig nfs on 
+   chkconfig rpcbind on 
+   service rpcbind start
+   service nfs start
+else
+   systemctl enable rpcbind
+   systemctl enable nfs-server
+   systemctl enable nfs-lock
+   systemctl enable nfs-idmap
+   systemctl start rpcbind
+   systemctl start nfs-server
+   systemctl start nfs-lock
+   systemctl start nfs-idmap
+fi
+   
 localip=`hostname -i | cut --delimiter='.' -f -3`
 echo "$IPPRE:/mnt/nfsshare    /mnt/nfsshare   nfs defaults 0 0" | tee -a /etc/fstab
 echo "$IPPRE:/mnt/resource/scratch    /mnt/scratch   nfs defaults 0 0" | tee -a /etc/fstab
