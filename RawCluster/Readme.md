@@ -46,4 +46,4 @@ You are now ready to launch your first test:
      
 <b>NOTES</b>
 
-The NFS share fro the jump box is created on a fast/temporary drive, so it will be lost in case of a STOP/RE START of the VM
+The NFS share fro the jump box is created on a fast/temporary drive on the jump box (/mnt/ressource/scratch), so it will be lost in case of a STOP/RE START of the VM
