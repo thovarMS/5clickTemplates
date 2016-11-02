@@ -14,7 +14,7 @@ View of ARM template:
 
 Delpoyed in Azure: 
 
-<img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture.PNG"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
+<img src="https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture.png"  align="middle" width="395" height="274"  alt="hpc_vmss_architecture" border="1"/> <br></br>
 
 <b>Use</b>
 
