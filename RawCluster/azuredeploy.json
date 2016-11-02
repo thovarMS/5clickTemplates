@@ -116,7 +116,14 @@
       "sku": "[parameters('linuxsku')]",
       "version": "latest"
     },
+    "osType71": {
+      "publisher": "OpenLogic",
+      "offer": "CentOS-HPC",
+      "sku": "7.1",
+      "version": "latest"
+    },
     "imageReference": "[variables('osType')]",
+    "imageReference71": "[variables('osType71')]",
     "vmScripts": {
       "scriptsToDownload": [
 				"[concat(variables('scriptUrl'), 'cn-setup.sh')]",
@@ -230,7 +237,7 @@
           "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
-          "imageReference": "[variables('imageReference')]",
+          "imageReference": "[variables('imageReference71')]",
           "osDisk": {
             "name": "[variables('jumpBoxOSDiskName')]",
             "vhd": {
