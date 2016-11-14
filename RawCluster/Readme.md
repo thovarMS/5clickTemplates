@@ -36,8 +36,6 @@ You are now ready to launch your first test:
 <i>Run an MPI benchmark</i>
 <pre class="prettyprint copy-to-clipboard " >mpirun -ppn 1 -n 2 -hostfile /home/$USER/nodenames.txt -env I_MPI_FABRICS=dapl     -env I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -env I_MPI_DYNAMIC_CONNECTION=0 IMB-MPI1 pingpong</pre>
 
-
 ## NOTES
------------------
 
 The NFS share from the jump box is created on a fast/temporary drive on the VM (/mnt/ressource/scratch), so it will be lost in case of a STOP/RE START of the VM
