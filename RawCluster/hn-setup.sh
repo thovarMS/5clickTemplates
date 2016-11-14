@@ -27,39 +27,55 @@ chmod -R 777 /mnt/resource/scratch/
 ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
 ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
 
-if [ "$SKUNAME" == "6.5" ] ; then
-# For CentOS 6.5 
-   wget http://dl.fedoraproject.org/pub/epel/6/x86_64/sshpass-1.05-1.el6.x86_64.rpm
-   rpm -ivh sshpass-1.05-1.el6.x86_64.rpm
-else
-   wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
-   rpm -ivh epel-release-7-8.noarch.rpm
+if [ "$LXDISTRO" == "CentOS-HPC" ] ; then
+   if [ "$SKUNAME" == "6.5" ] ; then
+   # For CentOS 6.5 
+      wget http://dl.fedoraproject.org/pub/epel/6/x86_64/sshpass-1.05-1.el6.x86_64.rpm
+      rpm -ivh sshpass-1.05-1.el6.x86_64.rpm
+   else
+      wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+      rpm -ivh epel-release-7-8.noarch.rpm
+   fi
 fi
 
-yum install -y -q nfs-utils sshpass nmap htop
-yum groupinstall -y "X Window System"
+if [ "$LXDISTRO" == "SLES-HPC" ] ; then
+	wget 195.220.108.108/linux/opensuse/distribution/13.2/repo/oss/suse/x86_64/sshpass-1.05-2.1.2.x86_64.rpm 
+	wget https://nmap.org/dist/nmap-7.31-1.x86_64.rpm
+    rpm -ivh sshpass-1.05-2.1.2.x86_64.rpm
+	rpm -ivh nmap-7.31-1.x86_64.rpm
+else
+   yum install -y -q nfs-utils sshpass nmap htop
+   yum groupinstall -y "X Window System"
+fi
 
 echo "/mnt/nfsshare $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 echo "/mnt/resource/scratch $localip.*(rw,sync,no_root_squash,no_all_squash)" | tee -a /etc/exports
 chmod -R 777 /mnt/nfsshare/
 chmod -R 777 /mnt/resource/scratch/
-if [ "$SKUNAME" == "6.5" ] ; then
-# For CentOS 6.5 (systemctl is supported for version > 7)
-   chkconfig nfs on 
-   chkconfig rpcbind on 
-   service rpcbind start
-   service nfs start
+if [ "$LXDISTRO" == "SLES-HPC" ] ; then
+	systemctl start rpcbind.service
+	systemctl enable nfsserver.service
+	systemctl start nfsserver.service
 else
-   systemctl enable rpcbind
-   systemctl enable nfs-server
-   systemctl enable nfs-lock
-   systemctl enable nfs-idmap
-   systemctl start rpcbind
-   systemctl start nfs-server
-   systemctl start nfs-lock
-   systemctl start nfs-idmap
-   systemctl restart nfs-server
+   if [ "$SKUNAME" == "6.5" ] ; then
+   # For CentOS 6.5 (systemctl is supported for version > 7)
+      chkconfig nfs on 
+      chkconfig rpcbind on 
+      service rpcbind start
+      service nfs start
+   else
+      systemctl enable rpcbind
+      systemctl enable nfs-server
+      systemctl enable nfs-lock
+      systemctl enable nfs-idmap
+      systemctl start rpcbind
+      systemctl start nfs-server
+      systemctl start nfs-lock
+      systemctl start nfs-idmap
+      systemctl restart nfs-server
+   fi
 fi
+
 mv clusRun.sh cn-setup.sh /home/$USER/bin
 chmod +x /home/$USER/bin/*.sh
 chown $USER:$USER /home/$USER/bin
