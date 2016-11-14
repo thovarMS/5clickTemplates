@@ -2,6 +2,7 @@
 USER=$1
 PASS=$2
 SKUNAME=$3
+LXDISTRO=$4
 
 IP=`hostname -i`
 localip=`hostname -i | cut --delimiter='.' -f -3`
