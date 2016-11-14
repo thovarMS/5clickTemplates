@@ -30,11 +30,34 @@
       "defaultValue": "7.1",
       "allowedValues": [
 	      "7.1",
-	      "6.5"
+	      "6.5",
+	      "12-SP1"
       ],
        "metadata": {
-	 "description": "Chose the release of CentOS used."}
+	 	"Description": "Chose the release of CentOS used. NOTES: 7.1 & 6.5 are for CentOS, 12-SP1 is for SLES"}
     },
+    "publishersku":{
+      "type": "string",
+      "defaultValue": "OpenLogic",
+      "allowedValues": [
+	      "SUSE",
+	      "OpenLogic"
+      ],
+       "metadata": {
+		"Description": "Chose the publisher of linux distro."}
+    },
+
+    "offersku":{
+      "type": "string",
+      "defaultValue": "CentOS-HPC",
+      "allowedValues": [
+	      "CentOS-HPC",
+	      "SLES-HPC"
+      ],
+       "metadata": {
+		"Description": "Chose the linux distribution."}
+    },
+
     "vmSku": {
       "type": "string",
       "defaultValue": "Standard_A8",
@@ -116,10 +139,10 @@
       "sku": "[parameters('linuxsku')]",
       "version": "latest"
     },
-    "osType71": {
-      "publisher": "OpenLogic",
-      "offer": "CentOS-HPC",
-      "sku": "7.1",
+    "osType": {
+      "publisher": "[parameters('publishersku')]",
+      "offer": "[parameters('offersku')]",
+      "sku": "[parameters('linuxsku')]",
       "version": "latest"
     },
     "imageReference": "[variables('osType')]",
@@ -281,7 +304,7 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',parameters('linuxsku')) ]",
+              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',parameters('linuxsku')),' ',parameters('offersku')) ]",
               "timestamp": 4
             }
           }
