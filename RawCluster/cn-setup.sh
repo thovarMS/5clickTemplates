@@ -36,8 +36,10 @@ echo "$IPPRE:/mnt/resource/scratch    /mnt/scratch   nfs defaults 0 0" | tee -a 
 showmount -e $IPPRE
 mount -a
 
-ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
-ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
+if [ "$LXDISTRO" == "CentOS-HPC" ] ; then
+   ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
+   ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
+fi
 chown -R $USER:$USER /mnt/resource/
 
 # Don't require password for HPC user sudo
