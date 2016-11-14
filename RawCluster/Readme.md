@@ -11,7 +11,7 @@ This template allows you to deploy a simple VM Scale Set of Linux VMs using the 
 
 ### View of ARM template:
 
-![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM-.PNG"ARM" )
+![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM-.PNG "ARM")
 
 ### Delpoyed in Azure: 
 
