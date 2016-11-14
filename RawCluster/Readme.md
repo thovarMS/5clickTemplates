@@ -11,11 +11,11 @@ This template allows you to deploy a simple VM Scale Set of Linux VMs using the 
 
 ### View of ARM template:
 
-![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM-.PNG")
+![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM-.PNG"ARM" )
 
 ### Delpoyed in Azure: 
 
-![Alt text](https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/Azure%20Archi.PNG "architecture")
+![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture-.PNG "architecture")
 
 ## Use
 
@@ -40,4 +40,4 @@ You are now ready to launch your first test:
 ## NOTES
 -----------------
 
-The NFS share fro the jump box is created on a fast/temporary drive on the jump box (/mnt/ressource/scratch), so it will be lost in case of a STOP/RE START of the VM
+The NFS share from the jump box is created on a fast/temporary drive on the VM (/mnt/ressource/scratch), so it will be lost in case of a STOP/RE START of the VM
