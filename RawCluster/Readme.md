@@ -47,3 +47,4 @@ The NFS share from the jump box is created on a fast/temporary drive on the VM (
 <img src="https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/workInProgress.png" align="middle" />
 
 - test SLES 12SP1 deployment
+- test H series
