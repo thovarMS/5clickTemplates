@@ -135,10 +135,10 @@
     "scriptUrl": "https://raw.githubusercontent.com/thovarMS/5clickTemplates/master/RawCluster/",
     "cnSetupScript": "cn-setup.sh",
     "hnSetupScript": "hn-setup.sh",
-    "osType": {
+    "osType71": {
       "publisher": "OpenLogic",
       "offer": "CentOS-HPC",
-      "sku": "[parameters('linuxsku')]",
+      "sku": "7.1",
       "version": "latest"
     },
     "osType": {
