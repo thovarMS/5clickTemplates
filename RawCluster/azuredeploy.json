@@ -34,7 +34,7 @@
 	      "12-SP1"
       ],
        "metadata": {
-	 	"Description": "Chose the release of CentOS used. NOTES: 7.1 & 6.5 are for CentOS, 12-SP1 is for SLES"}
+	 	"Description": "Chose the release of the Linux distribution. NOTES: 7.1 & 6.5 are for CentOS, 12-SP1 is for SLES"}
     },
     "publishersku":{
       "type": "string",
