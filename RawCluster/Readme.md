@@ -4,8 +4,6 @@
 I am currently working on:
 - test the deployment with CentOS 7.1 and SLES 12SP1,
 
-For using CentOS 7.1 deployment use the root template on https://github.com/tanewill/5clickTemplates/tree/master/RawCluster
-
 # Simple deployment of a VM Scale Set of Linux VMs with a jumpbox
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FthovarMS%2F5clickTemplates%2Fmaster%2FRawCluster%2Fazuredeploy.json" target="_blank">
