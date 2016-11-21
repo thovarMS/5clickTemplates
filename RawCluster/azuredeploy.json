@@ -25,39 +25,17 @@
         "description": "Azure region where all resources will be deployed. This is distinct from resource group location."
       }
     },
-    "linuxsku":{
+    "computeNodeImage": {
       "type": "string",
-      "defaultValue": "7.1",
+      "defaultValue": "CentOS_6.5_HPC",
       "allowedValues": [
-	      "7.1",
-	      "6.5",
-	      "12-SP1"
+        "CentOS_6.5_HPC",
+        "CentOS_7.1_HPC",
+        "SLES12_SP1_HPC"
       ],
        "metadata": {
-	 	"Description": "Chose the release of the Linux distribution. NOTES: 7.1 & 6.5 are for CentOS, 12-SP1 is for SLES"}
+	 	"Description": "Chose the Linux distribution for master & compute VMs}
     },
-    "publishersku":{
-      "type": "string",
-      "defaultValue": "OpenLogic",
-      "allowedValues": [
-	      "SUSE",
-	      "OpenLogic"
-      ],
-       "metadata": {
-		"Description": "Chose the publisher of linux distro."}
-    },
-
-    "offersku":{
-      "type": "string",
-      "defaultValue": "CentOS-HPC",
-      "allowedValues": [
-	      "CentOS-HPC",
-	      "SLES-HPC"
-      ],
-       "metadata": {
-		"Description": "Chose the linux distribution."}
-    },
-
     "vmSku": {
       "type": "string",
       "defaultValue": "Standard_A8",
@@ -135,20 +113,26 @@
     "scriptUrl": "https://raw.githubusercontent.com/thovarMS/5clickTemplates/master/RawCluster/",
     "cnSetupScript": "cn-setup.sh",
     "hnSetupScript": "hn-setup.sh",
-    "osType71": {
-      "publisher": "OpenLogic",
-      "offer": "CentOS-HPC",
-      "sku": "7.1",
-      "version": "latest"
+    "computeNodeImages": {
+      "CentOS_6.5_HPC": {
+        "publisher": "OpenLogic",
+        "offer": "CentOS-HPC",
+        "sku": "6.5",
+        "version": "latest"
+      },
+      "CentOS_7.1_HPC": {
+        "publisher": "OpenLogic",
+        "offer": "CentOS-HPC",
+        "sku": "7.1",
+        "version": "latest"
+      },
+      "SLES12_SP1_HPC": {
+        "publisher": "SUSE",
+        "offer": "SLES-HPC",
+        "sku": "12-SP1",
+        "version": "latest"
+      }
     },
-    "osType": {
-      "publisher": "[parameters('publishersku')]",
-      "offer": "[parameters('offersku')]",
-      "sku": "[parameters('linuxsku')]",
-      "version": "latest"
-    },
-    "imageReference": "[variables('osType')]",
-    "imageReference71": "[variables('osType71')]",
     "vmScripts": {
       "scriptsToDownload": [
 				"[concat(variables('scriptUrl'), 'cn-setup.sh')]",
@@ -262,7 +246,7 @@
           "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
-          "imageReference": "[variables('imageReference')]",
+	  "imageReference": "[variables('computeNodeImages')[parameters('computeNodeImage')]]",
           "osDisk": {
             "name": "[variables('jumpBoxOSDiskName')]",
             "vhd": {
@@ -346,7 +330,7 @@
               "caching": "ReadOnly",
               "createOption": "FromImage"
             },
-            "imageReference": "[variables('imageReference')]"
+	    "imageReference": "[variables('computeNodeImages')[parameters('computeNodeImage')]]"
           },
           "osProfile": {
             "computerNamePrefix": "[variables('namingInfix')]",
