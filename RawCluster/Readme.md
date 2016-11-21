@@ -29,8 +29,7 @@ NOTES: you can deploy CentOS or SLES
 
 To ssh into one of the VMs in the scale set, go to resources.azure.com to find the private IP address of the VM, make sure you are ssh'ed into the jumpbox, then execute the following command:
 
-ssh {username}@{vm-private-ip-address}
-
+<pre class="prettyprint copy-to-clipboard " >ssh {username}@{vm-private-ip-address}</pre>
 
 Then log on of the Compute node using the same account and load the MPI environement variables with:
 
