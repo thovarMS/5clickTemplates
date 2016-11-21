@@ -1,10 +1,7 @@
-# This template is UNDER DEVELOPMENT
-<img src="https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/workInProgress.png" align="middle" />
+This ARM template is inspired by Taylor NEWILL template:
 
-I am currently working on:
-- testing the deployment with SLES 12SP1,
+   - RawCluster tempate: https://github.com/tanewill/5clickTemplates/tree/master/RawCluster  
 
-CentOS 6.5 and 7.1 are OK
 
 # Simple deployment of a VM Scale Set of Linux VMs with a jumpbox
 
@@ -12,7 +9,7 @@ CentOS 6.5 and 7.1 are OK
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 for the jump box and 6.5 or 7.1 for compute) or SLES (12SP1). 
+This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 or 6.5) or SLES (12 SP1). 
 This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.
 
 ## Architecture
