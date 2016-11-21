@@ -291,7 +291,7 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": "[variables('vmScripts').scriptsToDownload]",
-              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',parameters('linuxsku')),' ',parameters('offersku')) ]",
+              "commandToExecute": "[concat('bash ', 'hn-setup.sh ',parameters('adminUsername'),' ',parameters('adminPassword'),' ',variables('computeNodeImages')[parameters('computeNodeImage')].sku,' ',variables('computeNodeImages')[parameters('computeNodeImage')].offer) ]",
               "timestamp": 4
             }
           }
