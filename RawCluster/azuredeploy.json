@@ -34,7 +34,8 @@
         "SLES12_SP1_HPC"
       ],
        "metadata": {
-	 	"Description": "Chose the Linux distribution for master & compute VMs}
+	 	"Description": "Chose the Linux distribution for master & compute VMs"
+       }
     },
     "vmSku": {
       "type": "string",
