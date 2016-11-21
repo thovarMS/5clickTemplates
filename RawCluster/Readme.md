@@ -37,8 +37,12 @@ ssh {username}@{vm-private-ip-address}
 
 Then log on of the Compute node using the same account and load the MPI environement variables with:
 
+On CentOS (6.5 & 7.1) do:
 <pre class="prettyprint copy-to-clipboard " >source /opt/intel/impi/5.1.3.181/bin64/mpivars.sh</pre>
-  
+
+On SLES (12 SP1) do:
+<pre class="prettyprint copy-to-clipboard " >source /opt/intel/impi/5.0.3.048/bin64/mpivars.sh</pre>
+
 You are now ready to launch your first test:
 
 <i>Run a simple MPI command</i>
@@ -49,7 +53,7 @@ You are now ready to launch your first test:
 
 ## NOTES
 
-The NFS share from the jump box is created on a fast/temporary drive on the VM (/mnt/ressource/scratch), so it will be lost in case of a STOP/RE START of the VM
+The NFS share from the jump box is created on a fast/temporary drive on the VM (/mnt/ressource/scratch), so it will be lost in case if you STOP and then START of the VM from Azure CLI/Portal or PS.
 
 ## Still to do
 
