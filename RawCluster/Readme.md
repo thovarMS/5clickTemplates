@@ -17,13 +17,13 @@ This template also deploys a jumpbox with a public IP address in the same virtua
 
 ### View of ARM template:
 
-![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM-.PNG "ARM")
+![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/AzureARM.PNG "ARM")
 
 NOTES: you can deploy CentOS or SLES
 
 ### Delpoyed in Azure: 
 
-![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture-.PNG "architecture")
+![Alt text](https://github.com/thovarMS/5clickTemplates/blob/master/RawCluster/Architecture.PNG "architecture")
 
 ## Use
 
