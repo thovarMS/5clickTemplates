@@ -3,13 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "resourceLocation": {
-      "value": "East US"
+      "value": "West Europe"
+    },
+    "computeNodeImage": {
+      "value": "CentOS_6.5_HPC"
     },
     "vmSku": {
-      "value": "Standard_A1"
-    },
-    "ubuntuOSVersion": {
-      "value": "15.10"
+      "value": "Standard_A8"
     },
     "vmssName": {
       "value": "GEN-UNIQUE-32"
@@ -19,9 +19,6 @@
     },
     "adminUsername": {
       "value": "ubuntu"
-    },
-    "linuxsku": {
-       "value": "7.1",     
     },
     "adminPassword": {
       "value": "GEN-PASSWORD"
