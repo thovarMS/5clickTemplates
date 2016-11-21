@@ -2,7 +2,9 @@
 <img src="https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/workInProgress.png" align="middle" />
 
 I am currently working on:
-- test the deployment with CentOS 7.1 and SLES 12SP1,
+- testing the deployment with SLES 12SP1,
+
+CentOS 6.5 and 7.1 are OK
 
 # Simple deployment of a VM Scale Set of Linux VMs with a jumpbox
 
@@ -10,7 +12,8 @@ I am currently working on:
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 for the jump box and 6.5 or 7.1 for compute) or SLES (12SP1). This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses. To ssh into the jumpbox, you could use the following command:
+This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 for the jump box and 6.5 or 7.1 for compute) or SLES (12SP1). 
+This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.
 
 ## Architecture
 
