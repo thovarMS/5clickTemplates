@@ -129,7 +129,12 @@ chmod -R 744 /mnt/resource/scratch/
 rm /home/$USER/bin/cn-setup.sh
 
 # Don't require password for HPC user sudo
-echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+if [ "$LXDISTRO" == "CentOS-HPC" ] ; then
+   echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+else
+   chmod +rwx /etc/sudoers.d/waagent
+   echo "$USER ALL=(ALL) NOPASSWD: ALL" >>  /etc/sudoers.d/waagent
+fi
     
 # Disable tty requirement for sudo
 sed -i 's/^Defaults[ ]*requiretty/# Defaults requiretty/g' /etc/sudoers
