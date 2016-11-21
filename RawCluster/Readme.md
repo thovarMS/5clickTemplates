@@ -2,8 +2,7 @@
 <img src="https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/workInProgress.png" align="middle" />
 
 I am currently working on:
-- simpler OS switch in the user parameters and adding SLES 12SP1,
-- checking hn and cn deployment script
+- test the deployment with CentOS 7.1 and SLES 12SP1,
 
 For using CentOS 7.1 deployment use the root template on https://github.com/tanewill/5clickTemplates/tree/master/RawCluster
 
