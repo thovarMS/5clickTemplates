@@ -53,6 +53,12 @@ The NFS share from the jump box is created on a fast/temporary drive on the VM (
 
 ## Still to do
 
-<img src="https://github.com/thovarMS/beegfs-shared-slurm-on-centos7.2/blob/master/workInProgress.png" align="middle" />
+<img src="https://raw.githubusercontent.com/thovarMS/beegfs-shared-slurm-on-centos7.2/master/workInProgress.png" align="middle" />
 
-- test deployment using H series
+- test deployment using H series with SLES
+
+## Warning
+
+<img src="https://raw.githubusercontent.com/thovarMS/Images/master/warning.png" align="middle" />
+
+- H series with IB is not yet officially supported with CentOS 6.5
