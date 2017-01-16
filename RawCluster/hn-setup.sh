@@ -19,10 +19,13 @@ mkdir -p /home/$USER/.ssh
 mkdir -p /home/$USER/bin
 
 # BEWARE: /mnt/resource/ is /dev/sdb1 which is a temporary disk on the VM (data are not keeped between reboot) 
+echo "--- --- --- --- --- --- Create directory under /mnt --- --- --- --- --- --- "
 mkdir -p /mnt/resource/scratch
 mkdir -p /mnt/nfsshare
 chmod -R 777 /mnt/nfsshare/
 chmod -R 777 /mnt/resource/scratch/
+ls /mnt/resource/
+echo "--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- "
 
 ln -s /opt/intel/impi/5.1.3.181/intel64/bin/ /opt/intel/impi/5.1.3.181/bin
 ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
