@@ -121,6 +121,9 @@ for NAME in $NAMES; do
         done
         sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME 'chmod 700 /home/'$USER'/.ssh/'
         sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME 'chmod 640 /home/'$USER'/.ssh/authorized_keys'
+	
+	# enable passwordless sudo
+	sshpass -p $PASS ssh -o ConnectTimeout=2 $USER@$NAME 'echo "$USER ALL=(ALL) NOPASSWD: ALL" >>  /etc/sudoers.d/waagent'
 done
 
 cp ~/.ssh/authorized_keys /home/$USER/.ssh/authorized_keys
@@ -132,12 +135,9 @@ chmod -R 744 /mnt/resource/scratch/
 rm /home/$USER/bin/cn-setup.sh
 
 # Don't require password for HPC user sudo
-if [ "$LXDISTRO" == "CentOS-HPC" ] ; then
-   echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-else
-   chmod +rwx /etc/sudoers.d/waagent
-   echo "$USER ALL=(ALL) NOPASSWD: ALL" >>  /etc/sudoers.d/waagent
-fi
+echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+chmod +rwx /etc/sudoers.d/waagent
+echo "$USER ALL=(ALL) NOPASSWD: ALL" >>  /etc/sudoers.d/waagent
     
 # Disable tty requirement for sudo
 sed -i 's/^Defaults[ ]*requiretty/# Defaults requiretty/g' /etc/sudoers
