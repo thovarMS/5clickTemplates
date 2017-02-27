@@ -33,11 +33,11 @@ ln -s /opt/intel/impi/5.1.3.181/lib64/ /opt/intel/impi/5.1.3.181/lib
 if [ "$LXDISTRO" == "CentOS-HPC" ] ; then
    if [ "$SKUNAME" == "6.5" ] ; then
    # For CentOS 6.5 
-      wget http://dl.fedoraproject.org/pub/epel/6/x86_64/sshpass-1.05-1.el6.x86_64.rpm
-      rpm -ivh sshpass-1.05-1.el6.x86_64.rpm
+      wget http://dl.fedoraproject.org/pub/epel/6/x86_64/sshpass-1.06-1.el6.x86_64.rpm 
+      rpm -ivh sshpass-1.06-1.el6.x86_64.rpm 
    else
-      wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
-      rpm -ivh epel-release-7-8.noarch.rpm
+      wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
+      rpm -ivh epel-release-7-9.noarch.rpm
    fi
 fi
 
