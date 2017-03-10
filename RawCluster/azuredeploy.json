@@ -5,11 +5,11 @@
     "resourceLocation": {
       "type": "string",
       "allowedValues": [
-        "East US",
-        "West US",
-        "South Central US",
-        "North Europe",
-        "West Europe"
+	      "East US",
+	      "West US",
+	      "South Central US",
+	      "North Europe",
+	      "West Europe"
       ],
       "metadata": {
         "description": "Azure region where all resources will be deployed. This is distinct from resource group location."
