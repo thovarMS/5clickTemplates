@@ -1,5 +1,5 @@
 {
-  "$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
   "contentVersion": "1.0.0.0",
   "parameters": {
 	  "resourceLocation": {
@@ -55,6 +55,7 @@
 		  "metadata": {
 			  "description": "Number of VM instances (100 or less)."
 		  },
+	          "defaultValue": 2,	  
 		  "maxValue": 100
 	  },
 	  "adminUsername": {
@@ -132,8 +133,8 @@
       ],
       "commandToExecute": ""
     },
-    "computeApiVersion": "2016-03-30",
-    "networkApiVersion": "2016-03-30",
+    "computeApiVersion": "2016-04-30-preview",
+    "networkApiVersion": "2016-06-01",
     "storageApiVersion": "2015-06-15"
   },
   "resources": [
