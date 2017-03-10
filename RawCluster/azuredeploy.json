@@ -2,73 +2,73 @@
   "$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "resourceLocation": {
-      "type": "string",
-      "allowedValues": [
-	      "East US",
-	      "West US",
-	      "South Central US",
-	      "North Europe",
-	      "West Europe"
-      ],
-      "metadata": {
-        "description": "Azure region where all resources will be deployed. This is distinct from resource group location."
-      }
-    },
-    "computeNodeImage": {
-      "type": "string",
-      "defaultValue": "CentOS_6.5_HPC",
-      "allowedValues": [
-        "CentOS_6.5_HPC",
-        "CentOS_7.1_HPC",
-        "SLES12_SP1_HPC"
-      ],
-       "metadata": {
-	 	"Description": "Chose the Linux distribution for master & compute VMs"
-       }
-    },
-    "vmSku": {
-      "type": "string",
-      "defaultValue": "Standard_A8",
-      "allowedValues": [
-        "Basic_A4",
-        "Standard_A8",
-        "Standard_A9",
-        "Standard_A10",
-        "Standard_A11",
-	"Standard_H16r",
-	"Standard_H16mr"
-      ],
-      "metadata": {
-        "description": "Which instance would you like to deploy to?"
-      }
-    },
-    "vmssName":{
-      "type":"string",
-      "metadata":{
-        "description":"String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
-      },
-      "maxLength": 61
-    },
-    "instanceCount": {
-      "type": "int",
-      "metadata": {
-        "description": "Number of VM instances (100 or less)."
-      },
-      "maxValue": 100
-    },
-    "adminUsername": {
-      "type": "string",
-      "metadata": {
-        "description": "Admin username on all VMs."
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Admin password on all VMs."
-      }
-    }
+	  "resourceLocation": {
+		  "defaultValue": "West Europe",
+		  "type": "string",
+		  "allowedValues": [
+			  "East US",
+			  "South Central US",
+			  "North Europe",
+			  "West Europe"
+		  ],
+		  "metadata": {
+			  "description": "Azure region where all resources will be deployed. This is distinct from resource group location."
+		  }
+	  },
+	  "computeNodeImage": {
+		  "type": "string",
+		  "defaultValue": "CentOS_6.5_HPC",
+		  "allowedValues": [
+			  "CentOS_6.5_HPC",
+			  "CentOS_7.1_HPC",
+			  "SLES12_SP1_HPC"
+		  ],
+		  "metadata": {
+			  "Description": "Chose the Linux distribution for master & compute VMs"
+		  }
+	  },
+	  "vmSku": {
+		  "type": "string",
+		  "defaultValue": "Standard_A8",
+		  "allowedValues": [
+			  "Basic_A4",
+			  "Standard_A8",
+			  "Standard_A9",
+			  "Standard_A10",
+			  "Standard_A11",
+			  "Standard_H16r",
+			  "Standard_H16mr"
+		  ],
+		  "metadata": {
+			  "description": "Which instance would you like to deploy to?"
+		  }
+	  },
+	  "vmssName":{
+		  "type":"string",
+		  "metadata":{
+			  "description":"String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
+		  },
+		  "maxLength": 61
+	  },
+	  "instanceCount": {
+		  "type": "int",
+		  "metadata": {
+			  "description": "Number of VM instances (100 or less)."
+		  },
+		  "maxValue": 100
+	  },
+	  "adminUsername": {
+		  "type": "string",
+		  "metadata": {
+			  "description": "Admin username on all VMs."
+		  }
+	  },
+	  "adminPassword": {
+		  "type": "securestring",
+		  "metadata": {
+			  "description": "Admin password on all VMs."
+		  }
+	  }
   },
   "variables": {
     "namingInfix": "[toLower(substring(concat(parameters('vmssName'), uniqueString(resourceGroup().id)), 0, 9))]",
