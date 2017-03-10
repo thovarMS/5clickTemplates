@@ -51,7 +51,7 @@
 		  "maxLength": 61
 	  },
 	  "instanceCount": {
-		  "type": "int",
+		  "type": "double",
 		  "metadata": {
 			  "description": "Number of VM instances (100 or less)."
 		  },
