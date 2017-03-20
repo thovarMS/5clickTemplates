@@ -1,6 +1,7 @@
 This ARM template is inspired by Taylor NEWILL template:
 
    - RawCluster tempate: https://github.com/tanewill/5clickTemplates/tree/master/RawCluster  
+   - RawCluster2 tempate: https://github.com/tanewill/5clickTemplates/tree/master/RawClusterV2 
 
 
 # Simple deployment of a VM Scale Set of Linux VMs with a jumpbox
