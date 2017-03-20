@@ -81,7 +81,7 @@
     "jumpBoxNicName": "[concat(variables('jumpBoxName'), 'nic')]",
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
-    "virtualNetworkName": "[concat(variables('namingInfix'), 'vnet')]",
+    "virtualNetworkName": "[concat(parameters('vmssName'), 'vnet')]",
     "subnetName": "[concat(parameters('vmssName'), 'subnet')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
