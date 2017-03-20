@@ -23,7 +23,8 @@ This ARM template is inspired by Taylor NEWILL template:
 <br>
 This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 or 6.5) or SLES (12 SP1). 
 This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.
-<br>
+
+
 About the VNET:
 - azuredeploy.json              : will create the VNET
 - azuredeploy_existingvnet.json : use an existing VNET created into a seperated Ressource Group
