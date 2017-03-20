@@ -5,7 +5,12 @@ This ARM template is inspired by Taylor NEWILL template:
 
 # Simple deployment of a VM Scale Set of Linux VMs with a jumpbox
 
+Full deployment:
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FthovarMS%2F5clickTemplates%2Fmaster%2FRawCluster%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+Using an existing VNET:
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FthovarMS%2F5clickTemplates%2Fmaster%2FRawCluster%2Fazuredeploy_existingvnet" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
