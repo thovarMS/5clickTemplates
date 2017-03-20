@@ -82,7 +82,7 @@
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
     "virtualNetworkName": "[concat(variables('namingInfix'), 'vnet')]",
-    "subnetName": "[concat(variables('namingInfix'), 'subnet')]",
+    "subnetName": "[concat(parameters('vmssName'), 'subnet')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     "publicIPAddressName": "[concat(variables('namingInfix'), 'pip')]",
