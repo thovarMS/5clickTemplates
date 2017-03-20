@@ -240,9 +240,6 @@
       "name": "[variables('namingInfix')]",
       "location": "[parameters('resourceLocation')]",
       "apiVersion": "[variables('computeApiVersion')]",
-      "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
-      ],
       "sku": {
         "name": "[parameters('vmSku')]",
         "tier": "Standard",
