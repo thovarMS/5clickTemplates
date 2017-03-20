@@ -241,7 +241,7 @@
       "location": "[parameters('resourceLocation')]",
       "apiVersion": "[variables('computeApiVersion')]",
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
       ],
       "sku": {
         "name": "[parameters('vmSku')]",
