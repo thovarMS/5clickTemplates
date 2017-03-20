@@ -19,8 +19,7 @@ This ARM template is inspired by Taylor NEWILL template:
     </td>
     </tr>
     </table>
-
-<br><br>
+<br>
 This template allows you to deploy a simple VM Scale Set of Linux VMs using the latest HPC version of CentOS (7.1 or 6.5) or SLES (12 SP1). 
 This template also deploys a jumpbox with a public IP address in the same virtual network. You can connect to the jumpbox via this public IP address, then connect from there to VMs in the scale set via private IP addresses.
 
